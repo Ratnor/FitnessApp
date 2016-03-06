@@ -1,0 +1,617 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{tabularx}
+
+
+\begin{document}
+
+\pagenumbering{gobble}% Remove page numbers (and reset to 1)	
+	\begin{titlepage}
+		
+		\title{Group 1: Fitness Evaluator Application\\ Requirements Document}
+		\author{Fernando Barrios\\
+		\texttt{(1320297)}
+		\and
+		Cole Blanchard\\
+		\texttt{(1226905)}
+		\and
+		Ratna Emani\\
+		\texttt{(1310641)}
+		\and
+		Jay Nguyen\\
+		\texttt{(1327828)}
+		\and
+		Jade Orkin-Fenster\\
+		\texttt{(1335823)}
+		}
+		\maketitle
+		
+		\center
+		\line(1,0){300}\\
+		\large\bfseries{McMaster University 3A04}
+		
+		
+	\end{titlepage}
+	
+	\tableofcontents
+	
+	\clearpage
+		
+	
+	\pagenumbering{arabic}
+
+
+\section{Introduction}
+This project will focus on the design and implementation of a health application for a mobile device, in particular a device based on an Android platform. The main task of the application will be to evaluate the user's fitness from the perspective of three main experts, a dietician, a personal trainer and a physician. The user will be evaluated by each expert separately and the results will be combined to perform an overall evaluation of the user's lifestyle.
+
+\subsection{Purpose}
+The purpose of this Software Requirements Specifications \textit{(SRS)} document is to provide a detailed description of the requirements for the software to be. This \textit{SRS} will allow a complete understanding of what is to be expected from the application. A clear understanding of the application's functionality is vital to help develop correct software for the end users and to develop future stages of the project. 
+
+This document will be used by a variety of engineers, consultants and stakeholders. This document will allow engineers to fully understand the scope of the project and develop a solution accordingly. The consultants will also benefit from the document to increase their understanding and ensure that business needs will be met. While stakeholders will be able to review the document to ensure that the system will be built to their expectations and make changes accordingly.
+
+\subsection{Product Scope}
+The scope of this project will be to specify, design and implement a fully functional application for a mobile device with an Android platform. The application will provide the user with an evaluation regarding their health based on their diet, fitness level and their body mass index. The values will be an estimate, but together shall provide an adequate evaluation of the user's overall health. The goal of this application is to allow those who are interested in improving their overall fitness level to track their daily progress. The application will also encourage users to improve their fitness levels as they learn how to improve their fitness rating. The application will be a stand alone application, however the fitness expert will interface will Google Maps to evaluate the user's cardiac capacity.
+
+\subsection{Definitions}
+This section shall contain definitions used in this document with respect to the Fitness Evaluator. The definitions displayed in this section are specific to this document and may not be identical to definitions used elsewhere. The purpose of this section is to help the user understand the references in this document and to fully understand the requirements. The functional requirements are specifications of the products functionality (what the product must do), such as calculations, whereas the non-functional requirements describe system attributes, such as security, look and feel.
+
+\begin{center}
+%\begin{tabular}{ |p{4cm}|p{6cm}| }
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Term} & \textbf{Definition}\\ 
+\hline
+ BMI & Body Mass Index  \\  
+\hline
+ Cooper Test & An estimation of VO2 Max based on distance run and time taken\\
+\hline
+ GPS & Global Positioning System \\
+\hline
+ GUI & Graphical User Interface \\  
+\hline
+ Rockport Fitness Walking Test & An estimation of VO2 Max based on distance walked, time taken, gender, age, weight, and heart rate\\
+\hline
+ SRS & Software Requirements Specifications (Refers to this document)  \\  
+\hline
+ VO2 Max & Maximum Volume of Oxygen \\  
+\hline
+ WC & Waist Circumference  \\  
+\hline
+
+
+%\end{tabular}
+\end{tabularx}
+\end{center}
+
+\subsection{References}
+
+\textbf{Andrew LeClair.}\\
+SE 3A04: Requirements Templates\\
+\textit{Department of Computing and Software, McMaster University, January 27/28, 2016}
+
+\subsection{Overview}
+The \textit{SRS} will be organised into three main section. The first section is "The Overall Description", the second section is "Functional Requirements" and the final section will be the "Non-Functional Requirements". The overall description will describe the requirements of the application, while the final two sections will list in detail the requirements of the system.
+
+\section{The Overall Description}
+This section shall describe the general factors which will effect the system. This section will provide a background for the specific requirements from section three, and makes it easier to understand them.
+
+\subsection{Product Perspective}
+There is an increasing awareness of personal fitness and healthy habits in today's technology-driven society.
+One of the biggest markets for fitness is now the App Stores for many mobile phones. There are APIs designed to track, measure, and time all physical activities the user engages in with their phone. Currently the App Store is populated with products similar to Nike+ or NexTrack, which track steps and provide the user with helpful guides and tutorials for various exercises. Recently, there has been a rise in fitness-oriented hardware, which the users can wear to track and analyse an even greater amount of data. Some of the more common products include FitBit, DigiFit, and Jawbone. 
+
+We would like to design an application that ideally fits in-between these two worlds. The application would have much of the functionality of the wearable hardware, without requiring the actual equipment. We can achieve this by designing an application that would be able make more accurate predictions using a wider array of data. In contrast with common market applications that specialize in a single expertise, our application would be able to use up to 3 experts at a time to make calculated predictions about the user's progress and goals. 
+
+\subsection{Product Functions}
+\begin{enumerate}[{F}1. ]
+\subsubsection{Physician}
+\item The system will provide a \textit{BMI} measurement based on user input of weight and height, and will refine this measurement if the user inputs gender and/or age.
+
+\item The system will provide an estimation of body fat percentage based on user input of height and waist size.
+
+\item The system will make a recommendation for whether the user should try to lose, gain, or maintain their current weight based on their \textit{BMI} and body fat percentage.\\
+
+\textbf{Additional Features}
+\item The system shall compare the user's \textit{BMI} measurement to other people in the region based on \textit{GPS} data and government demographics data and inform the user how they compare to the general population in their area.
+\subsubsection{Personal Trainer}
+\item The system will store the user's information.
+
+\item The system will calculate calories burned from walking, running, or biking along a path.
+
+\item The system will assess cardiovascular fitness by calculating \textit{VO2 Max} by the \textit{Cooper Test} or the \textit{Rockport Fitness Walking Test} methods, based on distance run or walked respectively, and the length of time this took.\\
+
+\textbf{Additional Features}
+\item The system will allow the user to select a biking/running/walking path based on its difficulty in terms of elevation increases, using user inputs of the length of time they wish to spend on their exercise and/or the calories they wish to burn during their exercise. How long a path will take the user and how many calories they will burn will be based on their personalised previously-assessed cardiovascular fitness.
+
+\item The system will provide difficulty, length of time, and/or calories-burned information for marked bike and walking trails based on the user's fitness level. These numbers will originally be pre-set average data, but will be continuously updated based on length of time and distance travelled along the route.
+
+\item The system will track the user's progress by saving their cardiovascular fitness when they use the application and tracking their improvement over time.
+
+
+\subsubsection{Dietitian}
+\item The system will recommend to the user how many calories they should be consuming per day to gain, lose, or maintain their current weight. This recommendation will depend on the Physician's recommendation.
+
+\item The system will check if the number of calories that the user consumed (based on user input) is within the range for gaining, losing, or maintaining their current weight.
+
+\item The system will determine the number of calories that the user consumed in a day from the user entering the food items they ate. A database will be used to look up how many calories the food item contains.\\ 
+
+\textbf{Additional Features}
+\item The system will allow the user to enter food items by bar code scan and will retrieve the food's caloric content and nutritional information.
+\end{enumerate}
+
+\subsection{User Characteristics}
+There are two types of users that interact with this system: The general user, and the software developer.\\
+
+%\includegraphics[scale=0.5]{UCD}
+\subsubsection{The General User}
+\indent The general user is expected to be familiar with the \textit{GUI} elements of smart phones and is to be able to read and comprehend English. In addition, they are expected to know basic knowledge about their body, such as weight and height and understand the basics of food nutrition.
+\subsubsection{The Software Developer}
+\indent In addition to the points above, the software developer is expected to have knowledge on object oriented programming, and rudimentary knowledge with working on Android Studio.
+
+\subsection{General Constraints}
+The general constraint of the project is time constraint as there is no budget required for the design and implementation. The allocated time for the project with be roughly two months with a total of four deliverables to ensure thorough completion of the application and its documentation.
+
+\subsection{Assumptions and Dependencies}
+The personal trainer expert will depend on the availability and accuracy of Google Maps.\\
+The personal trainer expert will depend on access to the internet to access Google Maps.\\
+The physician expert will depend on the availability and accuracy of Google Maps.\\ 
+The physician expert will depend on access to the internet to access Google Maps.\\
+The physician experts will depend on the accuracy of census data.\\
+The hardware will need to be able to use the Android operating system.
+
+\subsection{Apportioning of Requirements}
+The system shall allow all profiles to be stored in a central database.  Using the database, the level of fitness can be more accurate for each user.\\
+The app can be run on different operating systems.\\
+Developers can add their own experts which will be stored in a central database.  Users search for experts and can then download/remove experts to fit their preferences.
+\section{Functional Requirements}
+\label{sec:functional_requirements}
+\begin{enumerate}[{BE}1. ]
+	\item The app is opened
+	\begin{enumerate}[{VP1}.1]
+		\item User
+			\begin{enumerate}
+				\item The system shall allow the user to create a profile.
+				\item The system shall give a selection of experts from which the user can choose from.
+				\item The system shall allow the user to select "How Fit are You?"
+			\end{enumerate}
+		\item Developer
+			\begin{enumerate}
+				\item The system shall allow the developer to add and remove experts from the application.
+			\end{enumerate}
+	\end{enumerate}
+	\item Edit profile is selected
+	\begin{enumerate}[{VP2}.1]
+		\item User
+			\begin{enumerate}
+				\item The system shall allow the user to enter their age, weight, gender, height, and waist measurements.
+			\end{enumerate}
+	\end{enumerate}
+	\item Personal Trainer expert is selected
+	\begin{enumerate}[{VP3}.1]
+		\item User
+			\begin{enumerate}
+				\item The system shall calculate the distance of the user's jogs using Google Maps.
+				\item The system shall calculate the time and speed of the user's jog.
+				\item The system shall calculate the user's \textit{VO2 Max}.
+			\end{enumerate}
+	\end{enumerate}
+	\item Physician expert is selected
+	\begin{enumerate}[{VP4}.1]
+		\item User
+			\begin{enumerate}
+				\item The system shall calculate the \textit{BMI} of the user based on their profile.
+				\item The system shall locate the user using Google Maps.
+				\item The system shall give a relative \textit{BMI} rating based on the region the user lives in using Canadian census data.
+			\end{enumerate}
+	\end{enumerate}
+	\item Dietician expert is selected
+	\begin{enumerate}[{VP5}.1]
+		\item User
+			\begin{enumerate}
+				\item The system shall allow the user to select food from a database.
+				\item The system shall allow the user to manually enter calories.
+				\item The system shall calculate the total calories the user consumed daily.
+			\end{enumerate}
+		\item Developer
+			\begin{enumerate}
+				\item The system shall allow the developer to update the food database.
+			\end{enumerate}
+	\end{enumerate}
+	\item "How Fit are You?" is selected
+	\begin{enumerate}[{VP2}.1]
+		\item User
+			\begin{enumerate}
+				\item The system shall identify how fit the user is using at combination of at least one or more experts.
+			\end{enumerate}
+	\end{enumerate}
+	
+\end{enumerate}
+
+\section{Non-Functional Requirements}
+\label{sec:non-functional_requirements}
+% Begin Section
+\subsection{Look and Feel Requirements}
+\label{sub:look_and_feel_requirements}
+% Begin SubSection
+
+\subsubsection{Appearance Requirements}
+\label{ssub:appearance_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{LF-A}1. ]
+	\item The application shall display a \textit{GUI} with buttons and dialogue boxes.
+	
+	\item The application shall display a notification if a required option that is needed to perform a requested process has not yet been set.
+	
+	\item The application shall display which options have not yet been set before a process is requested.
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Style Requirements}
+\label{ssub:style_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{LF-S}1. ]
+	\item The application should use a simple colour scheme that is consistent across all pages and screens.
+\end{enumerate}
+% End SubSubSection
+
+% End SubSection
+
+\subsection{Usability and Humanity Requirements}
+\label{sub:usability_and_humanity_requirements}
+% Begin SubSection
+
+\subsubsection{Ease of Use Requirements}
+\label{ssub:ease_of_use_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{UH-EU}1. ]
+	\item The application shall be easy for users to install.
+	
+	\item The interface shall be intuitive and easy to use for users with a secondary-school education.
+	
+	\item The application shall make clear to the user what input information is necessary to perform a task and what input information is optional that will improve the accuracy of the fitness estimation.
+	
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Personalization and Internationalization Requirements}
+\label{ssub:personalization_and_internationalization_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{UH-PI}1. ]
+	\item The system shall store the user's data from one session to the next and may archive old data instead of overwriting it for the purpose of progression tracking.
+	
+	\item The system shall support user input and data output in both the metric and imperial systems.
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Learning Requirements}
+\label{ssub:learning_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{UH-L}1. ]
+	\item The application shall not require a tutorial and shall communicate enough information through its \textit{GUI} to guide users to successfully completing desired actions.
+
+	\item The system shall provide the user with the ability to read the definitions of specialised terms that are used in the application (e.g. \textit{VO2 Max} ). 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Understandability and Politeness Requirements}
+\label{ssub:understandability_and_politeness_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{UH-UP}1. ]
+	\item The application shall only use icons for its buttons that are clearly recognizable to user (including young users who are not familiar with outdated technology) and associated with the action they represent.
+	
+	\item The system shall use terminology understandable to users with a secondary-school education.
+	
+	\item All text displayed by the interface shall be in English with Canadian spelling.
+	
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Accessibility Requirements}
+\label{ssub:accessibility_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{UH-A}1. ]
+	\item The application should not use red in contrast with green to avoid issues for users with red-green colour blindness.
+	
+	\item The application shall use larger, readable fonts.
+\end{enumerate}
+% End SubSubSection
+
+% End SubSection
+
+\subsection{Performance Requirements}
+\label{sub:performance_requirements}
+% Begin SubSection
+
+\subsubsection{Speed and Latency Requirements}
+\label{ssub:speed_and_latency_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{PR-SL}1. ]
+	\item The application shall launch within 2 seconds.
+	
+	\item The system shall be responsive and when all required criteria to perform an action are met, it shall perform the requested action within 10 seconds.
+	
+	\item The system shall be responsive and when not all the required criteria to perform a requested action are met, it shall display a notification of the error within 2 seconds.
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Safety-Critical Requirements}
+\label{ssub:safety_critical_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{PR-SC}1. ]
+	\item The system shall not provide encouragement to diet or dieting tips to users who have been determined to be underweight.
+	
+	\item The system shall not provide users with dangerous walking/running/biking routes and instruct them to follow these routes (e.g. across a highway.)
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Precision or Accuracy Requirements}
+\label{ssub:precision_or_accuracy_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{PR-PA}1. ]
+	\item All calculations within the system based on user input and phone sensor input shall be precise to two decimal places.
+	
+	\item The system shall be adaptable to differing amounts of input data where appropriate, such that it is able to calculate a rough estimate of a fitness criterion with the basic information, but is able to provide a more accurate estimation of the the criterion the more input data it is provided.
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Reliability and Availability Requirements}
+\label{ssub:reliability_and_availability_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{PR-RA}1. ]
+	\item Even if one expert fails, other experts shall be independent enough to not fail as a result as well.
+	
+	\item The application shall be reliable and only unexpectedly quit at a failure rate of 5%.
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Robustness or Fault-Tolerance Requirements}
+\label{ssub:robustness_or_fault_tolerance_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{PR-RF}1. ]
+	\item The system shall still continue to operate despite a loss in internet connection, even though not all features will be available.
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Capacity Requirements}
+\label{ssub:capacity_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{PR-C}1. ]
+	\item The system must be able to store and/or access a searchable database of nutritional information for at least 1000 of the most commonly use food items.
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Scalability or Extensibility Requirements}
+\label{ssub:scalability_or_extensibility_requirements}
+% Begin SubSubSection
+%\begin{enumerate}[{PR-SE}1. ]
+%	\item 
+%\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Longevity Requirements}
+\label{ssub:longevity_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{PR-L}1. ]
+	\item The product shall be expected to be operational for a minimum of one year.
+\end{enumerate}
+% End SubSubSection
+
+% End SubSection
+
+\subsection{Operational and Environmental Requirements}
+\label{sub:operational_and_environmental_requirements}
+% Begin SubSection
+
+\subsubsection{Expected Physical Environment}
+\label{ssub:expected_physical_environment}
+% Begin SubSubSection
+\begin{enumerate}[{OE-E}1. ]
+	\item The application shall run on Android devices with \textit{GPS} tracking, photograph sensors, accelerometer sensors, gyroscope sensors, and internet connection.
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Requirements for Interfacing with Adjacent Systems}
+\label{ssub:requirements_for_interfacing_with_adjacent_systems}
+% Begin SubSubSection
+\begin{enumerate}[{OE-I}1. ]
+	\item The system shall be able to read and parse \textit{GPS} and sensor data from the Android phone with which it interfaces.
+	
+	\item The system shall be operational on all Android phones running at least the three most recent operating system releases.
+	
+	\item the system must interface with \textit{APIs} running on remote servers.
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Productization Requirements}
+\label{ssub:productization_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{OE-P}1. ]
+	\item The product shall be downloadable for Android phones.
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Release Requirements}
+\label{ssub:release_requirements}
+% Begin SubSubSection
+%\begin{enumerate}[{OE-R}1. ]
+%	\item 
+%\end{enumerate}
+% End SubSubSection
+
+% End SubSection
+
+\subsection{Maintainability and Support Requirements}
+\label{sub:maintainability_and_support_requirements}
+% Begin SubSection
+
+\subsubsection{Maintenance Requirements}
+\label{ssub:maintenance_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{MS-M}1. ]
+	\item All methods and modules within the system shall be documented with comments within the code to facilitate easy maintenance and readability.
+	
+	\item The system shall contain mechanisms by which a system administrator may update databases contained within the system.
+	
+	\item New experts shall be possible to add to the system within one day by a trained developer who is familiar with the system documentation.
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Supportability Requirements}
+\label{ssub:supportability_requirements}
+% Begin SubSubSection
+%\begin{enumerate}[{MS-S}1. ]
+%	\item
+%\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Adaptability Requirements}
+\label{ssub:adaptability_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{MS-A}1. ]
+	\item All experts shall be separable from one another and easily swappable.
+	
+	\item The system shall be sufficiently modularised such that expert modules can be added or removed without requiring extensive system restructuring.
+\end{enumerate}
+% End SubSubSection
+
+% End SubSection
+
+\subsection{Security Requirements}
+\label{sub:security_requirements}
+% Begin SubSection
+
+\subsubsection{Access Requirements}
+\label{ssub:access_requirements}
+% Begin SubSubSection
+%\begin{enumerate}[{SR-AC}1. ]
+%	\item 
+%\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Integrity Requirements}
+\label{ssub:integrity_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{SR-IN}1. ]
+	\item The system shall encrypt all transmitted messages using a cryptosystem using symmetric encryption with a Vigenere cipher.
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Privacy Requirements}
+\label{ssub:privacy_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{SR-PR}1. ]
+	\item The system shall not transmit, upload, or otherwise disclose the user's personal information without the user's permission.
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Audit Requirements}
+\label{ssub:audit_requirements}
+% Begin SubSubSection
+%\begin{enumerate}[{SR-AU}1. ]
+%	\item 
+%\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Immunity Requirements}
+\label{ssub:immunity_requirements}
+% Begin SubSubSection
+%\begin{enumerate}[{SR-IM}1. ]
+%	\item 
+%end{enumerate}
+% End SubSubSection
+
+% End SubSection
+
+\subsection{Cultural and Political Requirements}
+\label{sub:cultural_and_political_requirements}
+% Begin SubSection
+
+\subsubsection{Cultural Requirements}
+\label{ssub:cultural_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{CP-C}1. ]
+	\item The application shall not contain any imagery or text that can be reasonably foreseen as potentially offensive to users by mocking, insulting, or appropriating their culture, cultural symbols, cultural experiences, or cultural background.
+	
+	\item The application shall not shame, insult, or guilt users for their body shape, body size, or fitness level. The system shall not use negative adjectives to describe the user's body, fitness, or health (e.g. "poor fitness", "bad health", "unhealthy weight"). Whenever a comparison is performed to demographic or standard data and the user is found to be below average, this should be contextualised with positive information reported as well (e.g. "Your \textit{VO2 Max} is better than 25 percent of the population!", "You have achieved a 5 percent reduction in\textit{ BMI} measurement!") 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Political Requirements}
+\label{ssub:political_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{CP-P}1. ]
+	\item The application shall not contain any content that can be reasonably seen to favour or criticise any Canadian political party or politician and shall remain politically neutral.
+\end{enumerate}
+% End SubSubSection
+
+% End SubSection
+
+\subsection{Legal Requirements}
+\label{sub:legal_requirements}
+% Begin SubSection
+
+\subsubsection{Compliance Requirements}
+\label{ssub:compliance_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{LR-C}1. ]
+	\item The system shall comply with all Canadian federal laws and all Ontario provincial laws.
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Standards Requirements}
+\label{ssub:standards_requirements}
+% Begin SubSubSection
+%\begin{enumerate}[{LR-S}1. ]
+%	\item 
+%\end{enumerate}
+% End SubSubSection
+
+% End SubSection
+
+% End Section
+\newpage
+\appendix
+\section{Division of Labour}
+\label{sec:division_of_labour}
+% Begin Section
+
+\begin{center}
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Team Member} & \textbf{Contribution}\\ 
+\hline
+ Fernando Barrios & Introduction, Contribute to Requirements \\  
+\hline
+ Cole Blanchard & Functional Requirements, Assumptions and Dependencies, Apportioning of Requirements\\
+\hline
+ Ratna Emani & Product Perspective \\
+\hline
+ Jay Nguyen & User Characteristics \\  
+\hline
+ Jade Orkin-Fenster & Product Functions, Non-Functional Requirements\\
+\hline
+
+\end{tabularx}
+\end{center}
+
+
+\large\textbf{Group 1 Signatures}\\ \\ \\
+
+Fernando Barrios\\ \\ \\
+		
+Cole Blanchard\\ \\ \\
+
+Ratna Emani\\ \\ \\
+		
+Jay Nguyen\\ \\ \\
+		
+Jade Orkin-Fenster\\
+
+
+\end{document}
