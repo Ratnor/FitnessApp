@@ -1,6 +1,5 @@
 Detailed Class
 --------------
-
 Class: SessionControl
 Fields:
 Methods:
@@ -57,7 +56,7 @@ Methods:
 
 Class: DieticianDS
 Fields:
-
+-FoodItems: FoodItem[]
 Methods:
 +addFoodItem():void
 +deleteFoodItem():void
@@ -117,3 +116,13 @@ Methods:
 Class: CensusDataWrapper
 Fields:
 Methods:
+
+Class: FoodItem
+Fields:
+-name:string
+-calories:int
+Methods:
++setCalories():int
++setName():string
++getCalories():int
++getName():string
