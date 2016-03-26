@@ -1,0 +1,119 @@
+Detailed Class
+--------------
+
+Class: SessionControl
+Fields:
+Methods:
+-selectExpert():void
+-viewLogData():void
+
+Class: ProfileController
+Fields:
+Methods:
+
+
+Class: PhysicianController
+Fields:
+Methods:
+-calculateBMI():long
+-calculateBodyFat():long
+-calculateRelFit():int
+
+Class: TrainerController
+Fields:
+-startTime:long
+-endTime:long
+Methods:
+-calculateV02Max():long
+-startTimer():void
+-stopTimer():void
+
+
+Class: DieticianController
+Fields:
+Methods:
+-calculateCalories():int
+
+Class: UserInformation
+Fields:
+-age:int
+-firstName:string
+-lastName:string
+-height:int
+-weight: int
+
+Methods:
++setAge():string
++setFirstName():string
++setLastName():string
++setHeight():int
++setWeight():int
++getAge():int
++getFirstName():string
++getLastName():string
++getHeight():int
++getWeight():int
+
+
+Class: DieticianDS
+Fields:
+
+Methods:
++addFoodItem():void
++deleteFoodItem():void
++getFoodItem():
+
+
+
+Class: TrainerDS
+Fields:
+
+Methods:
++getPastRuns():
++addRun():
+
+Class: BMIDS
+Fields:
+
+Methods:
++getBMI():long
+
+
+Class: PhysicianDS
+Fields:
+Methods:
+getStats():
+
+
+Class: ProfilePage
+Fields:
+Methods:
++display():void
+
+Class: DieticianView
+Fields:
+Methods:
++display():void
+
+Class: PhysicianView
+Fields:
+Methods:
++display():void
+
+Class: TrainerView
+Fields:
+Methods:
++display():void
+
+Class: FoodDBWrapper
+Fields:
+Methods:
+
+
+Class: GoogleMapsWrapper
+Fields:
+Methods:
+
+Class: CensusDataWrapper
+Fields:
+Methods:
