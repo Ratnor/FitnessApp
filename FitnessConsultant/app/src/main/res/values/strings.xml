@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Fitness Consultant</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_session">MAIN MENU</string>
+    <string name="button_profile">Update Profile</string>
+    <string name="button_report">Overall Fitness Report</string>
+    <string name="button_advanced">Advanced Biometrics</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="prompt_age"><i>[Select your age]</i></string>
+    <string name="prompt_ft"><i>[Feet]</i></string>
+    <string name="prompt_in"><i>[Inches]</i></string>
+
+    />
+</resources>
