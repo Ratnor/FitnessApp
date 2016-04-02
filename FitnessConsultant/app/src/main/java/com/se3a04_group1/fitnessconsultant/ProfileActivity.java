@@ -10,10 +10,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Button;
 
 public class ProfileActivity extends AppCompatActivity {
 
     ArrayAdapter<String> gender_adapter;
+    ArrayAdapter<String> exercise_adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,7 @@ public class ProfileActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,6 +33,8 @@ public class ProfileActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        */
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //set view title
@@ -59,7 +64,11 @@ public class ProfileActivity extends AppCompatActivity {
 
         // create gender selector
         String[] gender_button = new String[] {"Female", "Male"};
-        gender_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, gender_button);
+        gender_adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item, gender_button);
+
+        // create exercise level selector
+        String[] exercise_button = new String[] {getString(R.string.exercise_opt0), getString(R.string.exercise_opt1), getString(R.string.exercise_opt2), getString(R.string.exercise_opt3)};
+        exercise_adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item, exercise_button);
 
 
     }
@@ -74,19 +83,68 @@ public class ProfileActivity extends AppCompatActivity {
         return array;
     }
 
-    public void onClick(View w) {
+    public void onClickGender(View w) {
         new AlertDialog.Builder(this)
-                .setTitle("the prompt")
+                .setTitle("Select your gender")
+
                 .setAdapter(gender_adapter, new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        Button gender_button = (Button)findViewById(R.id.button_gender);
 
-                        // TODO: user specific action
+                        switch(which){
+                            case 0:{
+                                gender_button.setText("Female");
+                                break;
+                            }
+                            case 1: {
+                                gender_button.setText("Male");
+                                break;
+                            }
+                        }
 
                         dialog.dismiss();
                     }
                 }).create().show();
+    }
+
+    public void onClickExercise(View w) {
+        new AlertDialog.Builder(this)
+                .setTitle("Select your exercise level for the average week")
+
+                .setAdapter(exercise_adapter, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Button exercise_button = (Button)findViewById(R.id.button_exercise);
+
+                        switch(which){
+                            case 0:{
+                                exercise_button.setText(R.string.exercise_opt0);
+                                break;
+                            }
+                            case 1: {
+                                exercise_button.setText(R.string.exercise_opt1);
+                                break;
+                            }
+                            case 2: {
+                                exercise_button.setText(R.string.exercise_opt2);
+                                break;
+                            }
+                            case 3: {
+                                exercise_button.setText(R.string.exercise_opt3);
+                                break;
+                            }
+                        }
+
+                        dialog.dismiss();
+                    }
+                }).create().show();
+    }
+
+    public void onClickSave(View w) {
+
     }
 
 

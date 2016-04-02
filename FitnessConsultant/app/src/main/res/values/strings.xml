@@ -9,6 +9,13 @@
     <string name="prompt_age"><i>[Select your age]</i></string>
     <string name="prompt_ft"><i>[Feet]</i></string>
     <string name="prompt_in"><i>[Inches]</i></string>
+    <string name="exercise_opt0">Sedentary</string>
+    <string name="exercise_opt1">Somewhat Active</string>
+    <string name="exercise_opt2">Active</string>
+    <string name="exercise_opt3">Very Active</string>
+    <string name="button_submit">Save Changes</string>
+    <string name="profile_hinttext">Please fill in all fields above and then press the \"Save Changes\" button below. Your Overall Fitness Report will then be viewable from the Main Menu</string>
+
 
     />
 </resources>
