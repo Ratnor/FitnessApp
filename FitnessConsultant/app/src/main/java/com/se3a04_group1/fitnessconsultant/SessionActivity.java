@@ -60,7 +60,8 @@ public class SessionActivity extends AppCompatActivity {
     }
     // Called when the user selects the Overall Fitness Report button
     public void sendToReport(View view){
-
+        Intent intent = new Intent(this, ReportActivity.class);
+        startActivity(intent);
     }
     //Called when the user selects the Advanced Biometrics button
     public void sendToAdvanced(View view){
