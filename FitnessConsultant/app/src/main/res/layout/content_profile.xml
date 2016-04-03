@@ -224,5 +224,6 @@
         android:layout_below="@+id/linearLayout5"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="40dp" />
+        android:layout_marginTop="40dp"
+        android:textColor="#d50000" />
 </RelativeLayout>

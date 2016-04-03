@@ -5,22 +5,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.Html;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Button;
 import android.widget.TextView;
-
-import java.io.File;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -182,7 +174,7 @@ public class ProfileActivity extends AppCompatActivity {
         boolean failFlag = false; // flag to check if any of the fields were left unfilled
 
         Button submit_button = (Button)findViewById(R.id.button_submit);
-        dialog.setText("You must input the following before pressing the \"Save Changes\" button:\n");
+        dialog.setText("ERROR: You must input the following before pressing the \"Save Changes\" button:\n");
         // save contents of Age field
         if (age_spin.getSelectedItemPosition() != -1){
             editor.putInt(getString(R.string.saved_age), (Integer) age_spin.getSelectedItem());
@@ -242,12 +234,16 @@ public class ProfileActivity extends AppCompatActivity {
             failFlag = true;
             dialog.append("Waist Circumference\n");
         }
-        // commit the saves to the editor
-        editor.commit();
+        //startPhysicianService(w);
+        //stopService(w);
 
         // Redirection to next Activity upon button press
         if (failFlag == false){ // if all the fields are filled
-            //TODO: Call Physician: BMI, %Body Fat
+            // commit the saves to the editor
+            editor.commit();
+
+            startPhysicianService(w); // CAN MOVE THIS LINE OUTSIDE FLAG CHECK FOR TESTING PURPOSES (then dont need to fill all fields)
+
             //TODO: Call Dietician: Daily Rec Cal Intake
 
             // Redirect to the Overall Fitness Report page
@@ -255,8 +251,20 @@ public class ProfileActivity extends AppCompatActivity {
             startActivity(intent);
 
             this.finish(); // not sure if this is the correct way to end the activity
+        }else{
+            editor.clear(); // do not commit changes to datastore
         }
 
+    }
+
+    // Method to start the service
+    public void startPhysicianService(View view) {
+        startService(new Intent(getBaseContext(), PhysicianService.class));
+    }
+
+    // Method to stop the service
+    public void stopService(View view) {
+        stopService(new Intent(getBaseContext(), PhysicianService.class));
     }
 
 
