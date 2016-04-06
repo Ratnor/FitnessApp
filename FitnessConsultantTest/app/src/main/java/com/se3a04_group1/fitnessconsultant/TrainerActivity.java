@@ -4,27 +4,41 @@ package com.se3a04_group1.fitnessconsultant;
  * Created by Jay on 4/4/2016.
  */
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.hardware.Sensor;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.Switch;
-import android.widget.Toast;
 
 
-public class TrainerActivity extends AppCompatActivity {
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
+
+public class TrainerActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener {
+
+    private GoogleMap mMap;
+    Marker now;
+    LocationManager locManager;
 
     Button btnTimer,btnBack;
     TextView textTime,textDistance;
-    boolean on = false;
     long startTime = 0;
 
     //runs without a timer by reposting this handler at the end of the runnable
@@ -33,11 +47,14 @@ public class TrainerActivity extends AppCompatActivity {
     // Timer for regular run
     Runnable timerRunnable = new Runnable() {
         public void run() {
+            SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
             long millis = System.currentTimeMillis() - startTime;
             int seconds = (int) (millis / 1000);
             int minutes = seconds / 60;
             seconds = seconds % 60;
             textTime.setText(String.format("%d:%02d", minutes, seconds));
+            // Displays total distance traveled
+            textDistance.setText(sharedPref.getFloat(getString(R.string.saved_distance), -1.0f) + " Meters");
 
             timerHandler.postDelayed(this, 500);
         }
@@ -57,9 +74,14 @@ public class TrainerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.trainer_layout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Run Tracker");
+
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
 
         btnTimer = (Button) findViewById(R.id.btnTimer);
@@ -67,9 +89,12 @@ public class TrainerActivity extends AppCompatActivity {
         textTime = (TextView) findViewById(R.id.textTime);
         textDistance = (TextView) findViewById(R.id.textDistance);
 
-        btnTimer.setOnClickListener(onClickListener);
-        btnBack.setOnClickListener(onClickListener);
-
+        locManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                || checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,this);
+            locManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0,this);
+        }
     }
 
     // Sends back to session
@@ -115,4 +140,51 @@ public class TrainerActivity extends AppCompatActivity {
         }
     };
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                || checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            mMap.setMyLocationEnabled(true);
+        }
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+
+        // Removes previous marker
+        if(now != null){
+            now.remove();
+        }
+
+        // Getting latitude of the current location
+        double latitude = location.getLatitude();
+
+        // Getting longitude of the current location
+        double longitude = location.getLongitude();
+
+        // Creating a LatLng object for the current location
+        LatLng latLng = new LatLng(latitude, longitude);
+        now = mMap.addMarker(new MarkerOptions().position(latLng).title("You are here"));
+        // Showing the current location in Google Map
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+
+        // Zoom in the Google Map
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+    }
+
+    @Override
+    public void onProviderDisabled(String arg0) {
+        // TODO Auto-generated method stub
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+        // TODO Auto-generated method stub
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+        // TODO Auto-generated method stub
+    }
 }

@@ -47,8 +47,8 @@ public class TrainerService extends Service {
         // Calculates v02 Max upon service closure
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        float maxDistance = sharedPref.getFloat(getString(R.string.saved_v02Max),-1);
-        editor.putFloat(getString(R.string.saved_v02Max), calculateV02Max(maxDistance));
+        float maxDistance = sharedPref.getFloat(getString(R.string.saved_distance),-1);
+        editor.putFloat(getString(R.string.tempt_v02Max), calculateV02Max(maxDistance));
         editor.commit();
        // Toast.makeText(this, sharedPref.getFloat(getString(R.string.saved_v02Max),-1.0f) + "", Toast.LENGTH_LONG).show();
 
@@ -74,7 +74,7 @@ public class TrainerService extends Service {
         return START_STICKY;
     }
 
-    // Grabs current location
+    // Grabs locations
     public void location(){
         locManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
@@ -105,6 +105,7 @@ public class TrainerService extends Service {
         }
     }
 
+    // Calculates v02 Max
     public float calculateV02Max(float distance){
 
         return (float)((distance - 504.9)/44.73);
@@ -170,5 +171,4 @@ public class TrainerService extends Service {
             return maxDistance;
         }
     }
-
 }
