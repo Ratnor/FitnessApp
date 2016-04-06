@@ -74,7 +74,7 @@
             android:name=".TrainerService"
             android:enabled="true"
             android:exported="true" />
-<<<<<<< HEAD
+
 
         <service
             android:name=".DieticianService"
