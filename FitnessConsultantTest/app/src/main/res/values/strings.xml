@@ -33,16 +33,18 @@
     <string name="saved_bf_category">physicianBFCategory</string>
     <string name="saved_regional_bmi">physicianRegionalBMI</string>
     <!-- Saved Data Key Strings - Trainer -->
-    <string name="saved_distance">Distance</string>
+    <string name="saved_distance">0 Meters</string>
     <string name="saved_v02Max">v02Max</string>
+    <string name="tempt_v02Max">V02Max</string>
     <!-- Fitness Report Defaults-->
     <string name="title_activity_report">ReportActivity</string>
     <string name="default_overall_assessment">You must fill out your user profile before your Fitness Report is accessible.</string>
     <string name="default_assessment">N/A</string>
     <!-- Trainer Default Values -->
-    <string name ="run_default_time">00:00:00</string>
-    <string name ="v02_default_time">00:00:00</string>
-    <string name ="default_distance">0 Meters</string>
+    <string name="run_default_time">00:00:00</string>
+    <string name="v02_default_time">00:00:00</string>
+    <string name="default_distance">0 Meters</string>
+    <string name="title_activity_maps">Map</string>
 
 
     />
