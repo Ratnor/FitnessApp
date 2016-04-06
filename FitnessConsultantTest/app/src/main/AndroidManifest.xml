@@ -52,6 +52,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.se3a04_group1.fitnessconsultant.SessionActivity" />
         </activity>
+        <activity android:name=".DieticianActivity"
+            android:parentActivityName=".SessionActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.se3a04_group1.fitnessconsultant.SessionActivity" />
+        </activity>
 
         <service
             android:name=".PhysicianService"
@@ -60,6 +67,11 @@
 
         <service
             android:name=".TrainerService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <service
+            android:name=".DieticianService"
             android:enabled="true"
             android:exported="true" />
     </application>

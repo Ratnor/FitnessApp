@@ -32,6 +32,10 @@
     <string name="saved_body_fat">physicianBodyFat</string>
     <string name="saved_bf_category">physicianBFCategory</string>
     <string name="saved_regional_bmi">physicianRegionalBMI</string>
+    <!-- Saved Data Key Strings - Dietician -->
+    <string name="saved_totCal">totalCalories</string>
+    <string name="saved_recCal">recCalories</string>
+    <string name="saved_cal_category">calCategory</string>
     <!-- Saved Data Key Strings - Trainer -->
     <string name="saved_distance">Distance</string>
     <string name="saved_v02Max">v02Max</string>

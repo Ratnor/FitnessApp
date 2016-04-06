@@ -75,4 +75,8 @@ public class SessionActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void sendToDietician(View view) {
+        Intent intent = new Intent(this, DieticianActivity.class);
+        startActivity(intent);
+    }
 }

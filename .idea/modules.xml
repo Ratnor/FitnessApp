@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FitnessConsultant/app/src/androidTest/androidTest.iml" filepath="$PROJECT_DIR$/FitnessConsultant/app/src/androidTest/androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/FitnessConsultant/app/src/main/main.iml" filepath="$PROJECT_DIR$/FitnessConsultant/app/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FitnessConsultant/app/src/main/androidTest/androidTest.iml" filepath="$PROJECT_DIR$/FitnessConsultant/app/src/main/androidTest/androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FitnessConsultantTest/app/src/androidTest/androidTest1.iml" filepath="$PROJECT_DIR$/FitnessConsultantTest/app/src/androidTest/androidTest1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FitnessConsultantTest/app/src/main/main.iml" filepath="$PROJECT_DIR$/FitnessConsultantTest/app/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FitnessConsultant/app/src/main/main1.iml" filepath="$PROJECT_DIR$/FitnessConsultant/app/src/main/main1.iml" />
       <module fileurl="file://$PROJECT_DIR$/FitnessConsultant/app/src/test/test.iml" filepath="$PROJECT_DIR$/FitnessConsultant/app/src/test/test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FitnessConsultantTest/app/src/test/test1.iml" filepath="$PROJECT_DIR$/FitnessConsultantTest/app/src/test/test1.iml" />
     </modules>
   </component>
 </project>

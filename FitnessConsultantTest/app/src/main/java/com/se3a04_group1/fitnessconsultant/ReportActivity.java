@@ -53,7 +53,17 @@ public class ReportActivity extends AppCompatActivity {
 
         //TODO: Implement checking Physician's Relative Fitness category
 
-        //TODO: Implement checking Dietician's data
+        int tot_cal = sharedPref.getInt(getString(R.string.saved_totCal), -1);
+        if (tot_cal != -1){
+            field = (TextView) findViewById(R.id.textView_CalsConsumed);
+            field.setText(String.valueOf(tot_cal) + "cal");
+        }
+
+        float rec_cal = sharedPref.getFloat(getString(R.string.saved_recCal), -1);
+        if (tot_cal != -1){
+            field = (TextView) findViewById(R.id.textView_DailyCals);
+            field.setText(String.valueOf(rec_cal) + "cal");
+        }
 
         float v02Max = sharedPref.getFloat(getString(R.string.saved_v02Max),-1.0f);
         if (v02Max != -1.0f){
