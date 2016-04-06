@@ -35,6 +35,14 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Reset Profile"
+            android:id="@+id/button6"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/button_report"
             android:id="@+id/button2"
             android:layout_gravity="center_horizontal"

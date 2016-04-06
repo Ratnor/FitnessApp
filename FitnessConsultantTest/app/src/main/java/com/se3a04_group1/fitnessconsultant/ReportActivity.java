@@ -74,6 +74,48 @@ public class ReportActivity extends AppCompatActivity {
         //Button gender_button = (Button)findViewById(R.id.button_gender);
         //gender_button.setText("Female");
 
+        //float bmi  = sharedPref.getFloat(getString(R.string.saved_bmi),-1.0f);
+
+        String bmiCat = sharedPref.getString("getString(R.string.saved_bmi_category)","");
+        String bfCat = sharedPref.getString("getString(R.string.saved_bf_category)","");
+        String exerciselvl = sharedPref.getString(getString(R.string.saved_exercise_lvl),"");
+        TextView summary = (TextView) findViewById(R.id.textView_overall_assessment);
+        summary.setText("");
+
+        if ( (bmiCat.equals("Overweight")||bmiCat.equals("Obese"))  ){
+            if (!bfCat.equals("Obese")){
+                // case of a very fit person with high muscle density
+                summary.append("Although your BMI puts you in the " + bmiCat + " category, your %Body Fat puts you in the " + bfCat + "category, " +
+                        "so you are physically fit. BMI alone can be misleading when a person has high muscle mass, since muscle weighs more than fat. " +
+                        "You should eat around " + rec_cal + "calories per day at your current fitness level of " + exerciselvl + ".");
+            }else{
+                summary.append("Your BMI puts you in the " + bmiCat + " category, and your %Body Fat puts you in the " + bfCat + "category, " +
+                        "so may wish to consult your doctor to determine if your health is being affected. " +
+                        "You should eat less than " + rec_cal + "calories per day at your current fitness level of " + exerciselvl + ".");
+            }
+
+        }else if (bmiCat.contains("Thinness") || bfCat.equals("Dangerously Low") || bfCat.equals("Essential Fat")){
+            // case of an underweight person
+            summary.append("Your BMI puts you in the " + bmiCat + " category, and your %Body Fat puts you in the " + bfCat + "category, " +
+                    "so you should see a doctor because these numbers are low and may affect your health and lower your lifespan." +
+                    "You should eat in excess of " + rec_cal + "calories per day at your current fitness level of " + exerciselvl + ".");
+        }else{
+            summary.append("Your BMI puts you in the " + bmiCat + " category, and your %Body Fat puts you in the " + bfCat + "category, " +
+                    "which is generally within normal range." +
+                    "You should eat in about " + rec_cal + "calories per day at your current fitness level of " + exerciselvl + ". " +
+                    "You can eat more or less than this number to gain or lose weight or to adjust for changes in fitness level.");
+        }
+
+        float compare = tot_cal - rec_cal;
+
+        if (compare > 10.0f){
+            summary.append("\nYou have consumed a caloric excess today, based on your recommended caloric intake.");
+        }else if (compare < -10.0f){
+            summary.append("\nYou have consumed a caloric deficit today, based on your recommended caloric intake.");
+        }else{
+            summary.append("\nYou are approximately consuming the amount of calories recommended for you, based on your recommended caloric intake.");
+        }
+
 
     }
 
