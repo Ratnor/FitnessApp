@@ -55,7 +55,11 @@ public class ReportActivity extends AppCompatActivity {
 
         //TODO: Implement checking Dietician's data
 
-        //TODO: Implement checking Trainer's data
+        float v02Max = sharedPref.getFloat(getString(R.string.saved_v02Max),-1.0f);
+        if (v02Max != -1.0f){
+            field = (TextView) findViewById(R.id.textView_VO2);
+            field.setText(String.valueOf(v02Max) + "mL/(kg·min)");
+        }
 
         //Button gender_button = (Button)findViewById(R.id.button_gender);
         //gender_button.setText("Female");

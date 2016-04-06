@@ -63,8 +63,16 @@ public class SessionActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ReportActivity.class);
         startActivity(intent);
     }
-    //Called when the user selects the Advanced Biometrics button
+    //Sends to regular run calculator
     public void sendToAdvanced(View view){
-
+        Intent intent = new Intent(this, TrainerActivity.class);
+        startActivity(intent);
     }
+
+    //Sends to v02 calculator
+    public void sendToV02(View view){
+        Intent intent = new Intent(this, v02Activity.class);
+        startActivity(intent);
+    }
+
 }

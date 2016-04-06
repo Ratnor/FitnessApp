@@ -117,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="VO2 Max: "
-                android:id="@+id/textView18" />
+                android:id="@+id/v02Max" />
 
             <TextView
                 android:layout_width="0dp"

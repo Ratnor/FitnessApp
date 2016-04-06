@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.se3a04_group1.fitnessconsultant">
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -9,14 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SessionActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        android:name=".SessionActivity"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme.NoActionBar">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
         <activity
             android:name=".ProfileActivity"
@@ -37,11 +38,30 @@
                 android:value="com.se3a04_group1.fitnessconsultant.SessionActivity" />
         </activity>
 
+        <activity android:name=".TrainerActivity"
+            android:parentActivityName=".SessionActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.se3a04_group1.fitnessconsultant.SessionActivity" />
+        </activity>
+        <activity android:name=".v02Activity"
+            android:parentActivityName=".SessionActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.se3a04_group1.fitnessconsultant.SessionActivity" />
+        </activity>
+
         <service
             android:name=".PhysicianService"
             android:enabled="true"
             android:exported="true" />
 
+        <service
+            android:name=".TrainerService"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>

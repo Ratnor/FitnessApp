@@ -44,14 +44,24 @@
             />
 
         <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="run tracker"
+        android:id="@+id/button3"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="10dp"
+        android:layout_margin="10dp"
+        android:onClick="sendToAdvanced"/>
+
+        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/button_advanced"
-            android:id="@+id/button3"
+            android:text="Calculate V02"
+            android:id="@+id/button4"
             android:layout_gravity="center_horizontal"
             android:paddingTop="10dp"
             android:layout_margin="10dp"
-            android:onClick="sendToAdvanced"/>
+            android:onClick="sendToV02"/>
     </LinearLayout>
 
 </RelativeLayout>
